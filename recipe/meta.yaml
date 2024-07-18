@@ -1,4 +1,4 @@
-{% set version = "0.2.0" %}
+{% set version = "0.3.0" %}
 
 package:
   name: cherab-inversion
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/munechika-koyo/cherab_inversion/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 021e5bbb1e68442fe69b17686b538e35fd17e94a53f924f9e1394babb02da5da
+  sha256: fc924472ca446a1ea70109de2b6be1f9428d360656df17b72573673fa7191a90
 
 build:
   skip: true  # [py<39]
