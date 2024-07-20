@@ -10,18 +10,17 @@ source:
 
 build:
   noarch: python
-  skip: true  # [py<39]
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir --no-build-isolation -vvv
 
 requirements:
   host:
     - pip
-    - python
+    - python >= 3.9
     - meson-python
     - wheel
   run:
-    - python
+    - python >= 3.9
     - numpy
     - scipy
     - matplotlib-base
