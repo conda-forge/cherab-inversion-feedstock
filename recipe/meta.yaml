@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/munechika-koyo/cherab_inversion/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: fc924472ca446a1ea70109de2b6be1f9428d360656df17b72573673fa7191a90
+  sha256: 324a9f28be801496f84739746388e20850007921e30a4b651b4b62f37d40a333
 
 build:
   noarch: python
