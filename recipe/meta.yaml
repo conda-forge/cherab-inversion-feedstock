@@ -1,7 +1,7 @@
 {% set version = "0.3.0" %}
 
 package:
-  name: cherab-inversion
+  name: cherab-inversion-split
   version: {{ version }}
 
 source:
@@ -11,31 +11,77 @@ source:
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir --no-build-isolation -vvv
 
 requirements:
+  build:
+    - python >=3.9            # [build_platform != target_platform]
+    - meson-python            # [build_platform != target_platform]
+    - wheel                   # [build_platform != target_platform]
+    - pkg-config              # [build_platform != target_platform]
   host:
     - pip
     - python >=3.9
     - meson-python
     - wheel
     - pkg-config
-  run:
-    - python >=3.9
-    - numpy
-    - scipy
-    - matplotlib-base
-    - scikit-sparse
+    - python-build
 
-test:
-  imports:
-    - cherab.inversion
-  commands:
-    - pip check
-    - pytest --pyargs cherab.inversion
-  requires:
-    - pip
-    - pytest
+
+# the top-level build.{sh,bat} builds cherab-inversion, and then
+# build-output.{sh,bat} installs the files
+output:
+  - name: cherab-inversion
+    script: build-output.sh   # [not win]
+    script: build-output.bat  # [win]
+    version: {{ version }}
+    requirements:
+      build:
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+      host:
+        - pip
+        - python >=3.9
+        - meson-python
+        - wheel
+        - pkg-config
+        - python-build
+      run:
+        - python >=3.9
+        - numpy
+        - scipy
+        - matplotlib-base
+        - scikit-sparse
+    test:
+      imports:
+        - cherab.inversion
+
+
+  - name: cherab-inversion-tests
+    script: build-output.sh   # [not win]
+    script: build-output.bat  # [win]
+    requirements:
+      build:
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+      host:
+        - pip
+        - python >=3.9
+        - meson-python
+        - wheel
+        - pkg-config
+        - python-build
+      run:
+        - python >=3.9
+        - numpy
+        - scipy
+        - matplotlib-base
+        - scikit-sparse
+    test:
+      requires:
+        - pytest
+      commands:
+        - pytest --pyargs cherab.inversion
+
 
 about:
   home: https://cherab-inversion.readthedocs.io/en/stable/
@@ -48,3 +94,4 @@ about:
 extra:
   recipe-maintainers:
     - munechika-koyo
+  feedstock-name: cherab-inversion
