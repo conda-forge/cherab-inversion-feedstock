@@ -31,7 +31,8 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-cherab--inversion--split-green.svg)](https://anaconda.org/conda-forge/cherab-inversion-split) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/cherab-inversion-split.svg)](https://anaconda.org/conda-forge/cherab-inversion-split) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/cherab-inversion-split.svg)](https://anaconda.org/conda-forge/cherab-inversion-split) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/cherab-inversion-split.svg)](https://anaconda.org/conda-forge/cherab-inversion-split) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-cherab--inversion-green.svg)](https://anaconda.org/conda-forge/cherab-inversion) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/cherab-inversion.svg)](https://anaconda.org/conda-forge/cherab-inversion) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/cherab-inversion.svg)](https://anaconda.org/conda-forge/cherab-inversion) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/cherab-inversion.svg)](https://anaconda.org/conda-forge/cherab-inversion) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-cherab--inversion--tests-green.svg)](https://anaconda.org/conda-forge/cherab-inversion-tests) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/cherab-inversion-tests.svg)](https://anaconda.org/conda-forge/cherab-inversion-tests) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/cherab-inversion-tests.svg)](https://anaconda.org/conda-forge/cherab-inversion-tests) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/cherab-inversion-tests.svg)](https://anaconda.org/conda-forge/cherab-inversion-tests) |
 
 Installing cherab-inversion
 ===========================
@@ -43,41 +44,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `cherab-inversion-split` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `cherab-inversion, cherab-inversion-tests` can be installed with `conda`:
 
 ```
-conda install cherab-inversion-split
-```
-
-or with `mamba`:
-
-```
-mamba install cherab-inversion-split
-```
-
-It is possible to list all of the versions of `cherab-inversion-split` available on your platform with `conda`:
-
-```
-conda search cherab-inversion-split --channel conda-forge
+conda install cherab-inversion cherab-inversion-tests
 ```
 
 or with `mamba`:
 
 ```
-mamba search cherab-inversion-split --channel conda-forge
+mamba install cherab-inversion cherab-inversion-tests
+```
+
+It is possible to list all of the versions of `cherab-inversion` available on your platform with `conda`:
+
+```
+conda search cherab-inversion --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search cherab-inversion --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search cherab-inversion-split --channel conda-forge
+mamba repoquery search cherab-inversion --channel conda-forge
 
-# List packages depending on `cherab-inversion-split`:
-mamba repoquery whoneeds cherab-inversion-split --channel conda-forge
+# List packages depending on `cherab-inversion`:
+mamba repoquery whoneeds cherab-inversion --channel conda-forge
 
-# List dependencies of `cherab-inversion-split`:
-mamba repoquery depends cherab-inversion-split --channel conda-forge
+# List dependencies of `cherab-inversion`:
+mamba repoquery depends cherab-inversion --channel conda-forge
 ```
 
 
