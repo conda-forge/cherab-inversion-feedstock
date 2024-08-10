@@ -1,4 +1,4 @@
-{% set version = "0.3.0" %}
+{% set version = "0.3.1" %}
 
 package:
   name: cherab-inversion-split
@@ -6,11 +6,11 @@ package:
 
 source:
   url: https://github.com/munechika-koyo/cherab_inversion/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 324a9f28be801496f84739746388e20850007921e30a4b651b4b62f37d40a333
+  sha256: 5fa4a41e746be9324f6e15f4cf2482e61c29d2a9cbcfcdc1810168766d1d33cc
 
 build:
   noarch: python
-  number: 1
+  number: 0
 
 requirements:
   host:
