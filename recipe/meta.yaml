@@ -1,17 +1,16 @@
-{% set version = "0.3.0" %}
+{% set version = "0.3.1" %}
 
 package:
-  name: cherab-inversion
+  name: cherab-inversion-split
   version: {{ version }}
 
 source:
   url: https://github.com/munechika-koyo/cherab_inversion/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 324a9f28be801496f84739746388e20850007921e30a4b651b4b62f37d40a333
+  sha256: 5fa4a41e746be9324f6e15f4cf2482e61c29d2a9cbcfcdc1810168766d1d33cc
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir --no-build-isolation -vvv
 
 requirements:
   host:
@@ -20,22 +19,56 @@ requirements:
     - meson-python
     - wheel
     - pkg-config
-  run:
-    - python >=3.9
-    - numpy
-    - scipy
-    - matplotlib-base
-    - scikit-sparse
+    - python-build
 
-test:
-  imports:
-    - cherab.inversion
-  commands:
-    - pip check
-    - pytest --pyargs cherab.inversion
-  requires:
-    - pip
-    - pytest
+
+# the top-level build.{sh,bat} builds cherab-inversion, and then
+# build-output.{sh,bat} installs the files
+outputs:
+  - name: cherab-inversion
+    script: build-output.sh
+    version: {{ version }}
+    requirements:
+      host:
+        - pip
+        - python >=3.9
+        - meson-python
+        - wheel
+        - pkg-config
+        - python-build
+      run:
+        - python >=3.9
+        - numpy
+        - scipy
+        - matplotlib-base
+        - scikit-sparse
+    test:
+      imports:
+        - cherab.inversion
+
+
+  - name: cherab-inversion-tests
+    script: build-output.sh
+    requirements:
+      host:
+        - pip
+        - python >=3.9
+        - meson-python
+        - wheel
+        - pkg-config
+        - python-build
+      run:
+        - python >=3.9
+        - numpy
+        - scipy
+        - matplotlib-base
+        - scikit-sparse
+    test:
+      requires:
+        - pytest
+      commands:
+        - pytest --pyargs cherab.inversion
+
 
 about:
   home: https://cherab-inversion.readthedocs.io/en/stable/
@@ -48,3 +81,4 @@ about:
 extra:
   recipe-maintainers:
     - munechika-koyo
+  feedstock-name: cherab-inversion
