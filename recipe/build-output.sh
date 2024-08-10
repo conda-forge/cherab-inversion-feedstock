@@ -37,7 +37,7 @@ else
     # -wnx flags mean: --wheel --no-isolation --skip-dependency-check
     $PYTHON -m build -w -n -x \
         -Cbuilddir=builddir \
-        -Cinstall-args=--tags=runtime,python-runtime,test \
+        -Cinstall-args=--tags=runtime,python-runtime,tests \
         || (cat builddir/meson-logs/meson-log.txt && exit 1)
 
     pip install dist/cherab*.whl
