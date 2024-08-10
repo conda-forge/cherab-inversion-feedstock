@@ -24,10 +24,9 @@ requirements:
 
 # the top-level build.{sh,bat} builds cherab-inversion, and then
 # build-output.{sh,bat} installs the files
-output:
+outputs:
   - name: cherab-inversion
-    script: build-output.sh   # [not win]
-    script: build-output.bat  # [win]
+    script: build-output.sh
     version: {{ version }}
     requirements:
       host:
@@ -49,8 +48,7 @@ output:
 
 
   - name: cherab-inversion-tests
-    script: build-output.sh   # [not win]
-    script: build-output.bat  # [win]
+    script: build-output.sh
     requirements:
       host:
         - pip
