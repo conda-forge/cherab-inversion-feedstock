@@ -10,7 +10,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
 
 requirements:
   host:
@@ -26,6 +26,8 @@ requirements:
 # build-output.{sh,bat} installs the files
 outputs:
   - name: cherab-inversion
+    build:
+      noarch: python
     script: build-output.sh
     version: {{ version }}
     requirements:
@@ -48,6 +50,8 @@ outputs:
 
 
   - name: cherab-inversion-tests
+    build:
+      noarch: python
     script: build-output.sh
     requirements:
       host:
