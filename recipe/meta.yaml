@@ -13,16 +13,10 @@ build:
   number: 1
 
 requirements:
-  build:
-    - python >=3.9            # [build_platform != target_platform]
-    - meson-python            # [build_platform != target_platform]
-    - wheel                   # [build_platform != target_platform]
-    - pkg-config              # [build_platform != target_platform]
   host:
     - pip
     - python >=3.9
     - meson-python
-    - meson <1.4
     - wheel
     - pkg-config
     - python-build
@@ -36,9 +30,6 @@ output:
     script: build-output.bat  # [win]
     version: {{ version }}
     requirements:
-      build:
-        - python >=3.9                           # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
         - pip
         - python >=3.9
@@ -61,14 +52,10 @@ output:
     script: build-output.sh   # [not win]
     script: build-output.bat  # [win]
     requirements:
-      build:
-        - python >=3.9                           # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
       host:
         - pip
         - python >=3.9
         - meson-python
-        - meson <1.4
         - wheel
         - pkg-config
         - python-build
