@@ -3,15 +3,11 @@ About cherab-inversion-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/cherab-inversion-feedstock/blob/main/LICENSE.txt)
 
-Home: https://cherab-inversion.readthedocs.io/en/stable/
+
 
 Package license: BSD-3-Clause
 
 Summary: Cherab inversion framework
-
-Development: https://github.com/munechika-koyo/cherab_inversion
-
-Documentation: https://cherab-inversion.readthedocs.io/en/stable/
 
 Current build status
 ====================
