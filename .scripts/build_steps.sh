@@ -52,9 +52,6 @@ source run_conda_forge_build_setup
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 
-# build portion of https://github.com/conda-forge/conda-smithy/issues/2057
-EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --experimental"
-
 ( endgroup "Configuring conda" ) 2> /dev/null
 
 if [[ -f "${FEEDSTOCK_ROOT}/LICENSE.txt" ]]; then
