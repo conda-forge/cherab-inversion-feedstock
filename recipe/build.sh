@@ -17,3 +17,7 @@ $PYTHON -m build -w -n -x \
     -Cbuilddir=builddir \
     -Cinstall-args=--tags=runtime,python-runtime,devel \
     || (cat builddir/meson-logs/meson-log.txt && exit 1)
+
+# copy the wheel to the dist folder
+mkdir -p $PREFIX/dist
+cp -r dist/* $PREFIX/dist/

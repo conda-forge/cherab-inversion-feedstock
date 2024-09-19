@@ -1,0 +1,92 @@
+# the top-level build.{sh,bat} builds cherab-inversion, and then
+# build-output.{sh,bat} installs the files
+context:
+  version: 0.3.1
+
+recipe:
+  name: cherab-inversion-split
+  version: ${{ version }}
+
+source:
+  url: https://github.com/munechika-koyo/cherab_inversion/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 5fa4a41e746be9324f6e15f4cf2482e61c29d2a9cbcfcdc1810168766d1d33cc
+
+cache:
+  requirements:
+    host:
+      - pip
+      - python >=3.9
+      - meson-python
+      - wheel
+      - pkg-config
+      - python-build
+
+  build:
+    number: 2
+    noarch: python
+
+outputs:
+  - package:
+      name: cherab-inversion
+      version: ${{ version }}
+    build:
+      noarch: python
+      script: build-output.sh
+    requirements:
+      host:
+        - pip
+        - python >=3.9
+        - meson-python
+        - wheel
+        - pkg-config
+        - python-build
+      run:
+        - python >=3.9
+        - numpy
+        - scipy
+        - matplotlib-base
+        - scikit-sparse
+    tests:
+      - python:
+          imports:
+            - cherab.inversion
+
+  - package:
+      name: cherab-inversion-tests
+    build:
+      noarch: python
+      script: build-output.sh
+    requirements:
+      host:
+        - pip
+        - python >=3.9
+        - meson-python
+        - wheel
+        - pkg-config
+        - python-build
+      run:
+        - python >=3.9
+        - numpy
+        - scipy
+        - matplotlib-base
+        - scikit-sparse
+    tests:
+      - requirements:
+          run:
+            - pytest
+        script:
+          - pytest --pyargs cherab.inversion
+
+about:
+  summary: Cherab inversion framework
+  license: BSD-3-Clause
+  license_file: LICENSE.md
+  homepage: https://cherab-inversion.readthedocs.io/en/stable/
+  repository: https://github.com/munechika-koyo/cherab_inversion
+  documentation: https://cherab-inversion.readthedocs.io/en/stable/
+
+extra:
+  recipe-maintainers:
+    - munechika-koyo
+  feedstock-name: cherab-inversion
+

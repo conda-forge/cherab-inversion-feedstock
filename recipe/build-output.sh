@@ -11,10 +11,10 @@ export PYTHONDONTWRITEBYTECODE=True
 
 if [[ "$PKG_NAME" == "cherab-inversion" ]]; then
     # install wheel from build.sh
-    pip install dist/cherab*.whl
+    pip install $PREFIX/dist/cherab*.whl
 
     # clean up dist folder for building tests
-    rm -rf dist
+    rm -rf $PREFIX/dist
 else
     # copy of build.sh, except different build tags; instead of using the
     # same script (lightly templated on tags) per output, we keep the
