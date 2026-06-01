@@ -1,84 +1,54 @@
-# the top-level build.{sh,bat} builds cherab-inversion, and then
-# build-output.{sh,bat} installs the files
 context:
-  version: 0.3.1
+  version: 0.4.0
 
-recipe:
-  name: cherab-inversion-split
+package:
+  name: cherab-inversion
   version: ${{ version }}
 
 source:
   url: https://github.com/munechika-koyo/cherab_inversion/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 5fa4a41e746be9324f6e15f4cf2482e61c29d2a9cbcfcdc1810168766d1d33cc
+  sha256: 92fa6dae87b6b54c2ec1b54baa287bd03254a97752b3a6adb9455f761974ebe6
 
-cache:
-  requirements:
-    host:
-      - pip
-      - python >=3.9
-      - meson-python
-      - wheel
-      - pkg-config
-      - python-build
+build:
+  number: 0
+  noarch: python
+  script:
+    content: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --ignore-installed
+    env:
+      SETUPTOOLS_SCM_PRETEND_VERSION: ${{ version }}
 
-  build:
-    number: 2
-    noarch: python
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - hatch-vcs
+    - hatchling
+  run:
+    - python >=${{ python_min }}
+    - numpy
+    - scipy
+    - matplotlib-base
+    - scikit-sparse
+    - rich
 
-outputs:
-  - package:
-      name: cherab-inversion
-      version: ${{ version }}
-    build:
-      noarch: python
-      script: build-output.sh
+tests:
+  - python:
+      imports:
+        - cherab.inversion
+      pip_check: true
+  - script:
+      - pytest
+    files:
+      source:
+        - tests
     requirements:
-      host:
-        - pip
-        - python >=3.9
-        - meson-python
-        - wheel
-        - pkg-config
-        - python-build
       run:
-        - python >=3.9
-        - numpy
-        - scipy
-        - matplotlib-base
-        - scikit-sparse
-    tests:
-      - python:
-          imports:
-            - cherab.inversion
-
-  - package:
-      name: cherab-inversion-tests
-    build:
-      noarch: python
-      script: build-output.sh
-    requirements:
-      host:
-        - pip
-        - python >=3.9
-        - meson-python
-        - wheel
-        - pkg-config
-        - python-build
-      run:
-        - python >=3.9
-        - numpy
-        - scipy
-        - matplotlib-base
-        - scikit-sparse
-    tests:
-      - requirements:
-          run:
-            - pytest
-        script:
-          - pytest --pyargs cherab.inversion
+        - python ${{ python_min }}.*
+        - pytest
 
 about:
   summary: Cherab inversion framework
+  description: Cherab add-on module that provides inversion techniques including SVD, MFR, and more.
   license: BSD-3-Clause
   license_file: LICENSE.md
   homepage: https://cherab-inversion.readthedocs.io/en/stable/
@@ -88,5 +58,3 @@ about:
 extra:
   recipe-maintainers:
     - munechika-koyo
-  feedstock-name: cherab-inversion
-
