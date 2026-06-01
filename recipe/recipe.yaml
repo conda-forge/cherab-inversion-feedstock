@@ -50,6 +50,7 @@ about:
   summary: Cherab inversion framework
   description: Cherab add-on module that provides inversion techniques including SVD, MFR, and more.
   license: BSD-3-Clause
+  license_file: LICENSE.md
   homepage: https://cherab-inversion.readthedocs.io/en/stable/
   repository: https://github.com/munechika-koyo/cherab_inversion
   documentation: https://cherab-inversion.readthedocs.io/en/stable/
